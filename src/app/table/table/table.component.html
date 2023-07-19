@@ -1,0 +1,86 @@
+<div class="bg-dark">
+  <h1 class="text-center text-light">Mascotas</h1>
+  <!-- <form>
+      <div class="form-group form-inline">
+          Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+      </div>
+  </form> -->
+  <div class="py-4">
+    <button class="btn btn-success" (click)="open(content)">Agregar</button>
+  </div>
+  <table class="table bg-light table-striped">
+      <thead>
+          <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of moneda; index as i">
+          <td scope="row">{{item.id}}</td>
+          <td>
+              <img [src]="item.image" class="me-2" style="width: 100px" style="height: 100px" />
+              <!-- <ngb-highlight [result]="item.name" [term]="filter.value"></ngb-highlight> -->
+          </td>
+          <td>{{item.name}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openE(content, item)">Editar</button>
+            <button class="btn btn-danger" (click)="deleteItem(content, item)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  <!-- <ngb-pagination class="d-flex justify-content-letf" [rotate]="true" [boundaryLinks]="true" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="cargaData()">
+  </ngb-pagination> -->
+</div>
+
+<!-- MODAL -->
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{ optionModal.title }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="fromMasterGroup" (ngSubmit)="accionBoton(modal)">
+        <div class="form-group">
+          <label>{{ subTitleModal }}</label>
+            <p>
+              <label>Id:</label>
+              <input type="text" formControlName="id" id="contentId" />
+            </p>
+            <p>
+              <label>Nombre:</label>
+              <input type="text" formControlName="name" id="contentName" />
+            </p>
+            <p>
+              <label>Imagen:</label>
+              <input type="text" formControlName="image" id="contentImage" />
+            </p>
+          
+
+          <!-- <div class="input-group"> -->
+            <!-- <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+            </div> -->
+            
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" type="submit">{{ nameButton }}</button>
+        </div>
+      </form>
+      <!-- {{ fromMasterGroup.value | json }} -->
+    </div>
+    
+  </ng-template>
+
+  
+  
+  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+  
+  <!-- <pre>{{ closeResult }}</pre> -->
